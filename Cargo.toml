@@ -13,5 +13,6 @@ opt-level = 0
 opt-level = 3
 
 [dependencies]
+dotenv_codegen = "0.15.0"
 discord_game_sdk = "1.0.1"
 serde_json = "1.0.64"

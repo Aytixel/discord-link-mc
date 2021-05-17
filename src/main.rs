@@ -1,6 +1,8 @@
+#[macro_use]
+extern crate dotenv_codegen;
+
 use discord_game_sdk::{Discord, EventHandler, LobbyID, LobbyTransaction, User, UserID};
 use serde_json::{json, Value};
-use std::env;
 use std::io::{
     stdin, stdout, BufRead, BufReader, BufWriter,
     ErrorKind::{ConnectionReset, WouldBlock},
@@ -29,7 +31,8 @@ impl EventHandler for MyEventHandler {
 
 fn main() {
     let thread_link_mutex = Arc::new(Mutex::new(ThreadLink::new()));
-    let mut discord = Discord::new(env!("DISCORD_APPLICATION_ID").parse::<i64>().unwrap()).unwrap();
+    let mut discord =
+        Discord::new(dotenv!("DISCORD_APPLICATION_ID").parse::<i64>().unwrap()).unwrap();
     let mut is_connection_start = false;
     let mut max_hearing_distance = 0.;
 
